@@ -2,34 +2,35 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Course from './Course';
+
+
+function getRandomCourse(){
+  const courseArray = ['Angular','Bootstrap','Ccsharp','KompleWeb'];
+  return courseArray[Math.floor(Math.random()*courseArray.length)]
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [courses, setCourses] = useState([])
+
+  const handleClick = () => {
+    setCourses([...courses, getRandomCourse()])
+  };
+
+  const courseList = courses.map((course, index) => {
+     retun <Course key={index} courseName={course} />  ;
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+     <div className="App">
+       <button onClick={handleClick}>Kurs Ekle</button>
+       <div>
+        {courseList}
+       </div>
+     </div>
+  );
 }
 
 export default App
