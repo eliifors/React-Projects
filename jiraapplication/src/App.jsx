@@ -17,11 +17,32 @@ function App() {
 
     setTasks(createdTask);
   };
+
+  const deleteTaskById = (id, updatedTitle, updatedTaskDesc) => {
+    const afterDeletingTasks = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(afterDeletingTasks);
+  };
+
+  const editTaskById = (id) => {
+    const updatingTasks = tasks.map((task) => {
+      if (task.id == id) {
+        return { id: id, title: updatedTitle, taskDesc: updatedTaskDesc };
+      }
+      return task;
+    });
+    setTasks(updatingTasks);
+  };
   return (
     <div className="App">
       <TaskCreate onCreate={createTask} />
       <h1>Görevler</h1>
-      <TaskList tasks={tasks} />
+      <TaskList
+        tasks={tasks}
+        onDelete={deleteTaskById}
+        onUpdate={editTaskById}
+      />
     </div>
   );
 }
