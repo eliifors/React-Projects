@@ -19,7 +19,6 @@ function TaskCreate({ onCreate, task, taskformUpdate, onUpdate }) {
     } else {
       onCreate(title, taskDesc);
     }
-    onCreate(title, taskDesc);
     setTitle("");
     setTaskDesc("");
   };
