@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [elif, setElif] = useState(0);
+  const [kerem, setKerem] = useState(0);
+
+  useEffect(() => {
+    console.log("İlk kez render edildiğinde çalışır bir daha çalışmaz.");
+  }, []);
+
+  useEffect(() => {
+    console.log("Her zaman çalışır.");
+  });
+
+  useEffect(() => {
+    console.log(
+      "İlk kez render edildiğinde çalışır ve Elif değerinde bir değişiklik olduğunda çalışır ."
+    );
+  }, [elif]);
+
+  useEffect(() => {
+    console.log(
+      "İlk kez render edildiğinde çalışır ve Kerem değerinde bir değişiklik olduğunda çalışır ."
+    );
+  }, [kerem]);
+
+  useEffect(() => {
+    console.log(
+      "İlk kez render edildiğinde çalışır ve Elif veya Kerem değerinde bir değişiklik olduğunda çalışır ."
+    );
+  }, [elif, kerem]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div className="firstDiv">
+        <button onClick={() => setElif(elif + 1)}>Elif ++</button>
+        <div>Elif : {elif}</div>
+        <div>
+          <button onClick={() => setKerem(kerem + 1)}>Kerem ++</button>
+          <div>Kerem : {kerem}</div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
