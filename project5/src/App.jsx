@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Courses from "./Courses";
+import Loading from "./Loading";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  const deleteCourse = (id) => {
+    const afterDeletedCourses = courses.filter((course) => course.id !== id);
+    setCourses(afterDeletedCourses);
+  };
+
+  const fetchCourses = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:3000/courses");
+      setCourses(response.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+
+    debugger;
+  };
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          {courses.length === 0 ? (
+            <div className="refleshDiv">
+              <h2>Kursların hepsini sildin!</h2>
+              <button
+                className="cardDeleteBtn"
+                onClick={() => {
+                  fetchCourses();
+                }}
+              >
+                Yenile
+              </button>
+            </div>
+          ) : (
+            <Courses courses={courses} removeCourse={deleteCourse} />
+          )}
+        </>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
