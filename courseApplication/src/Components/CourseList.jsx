@@ -11,14 +11,14 @@ function CourseList() {
       {quantity < 1 ? (
         <section className="cart">
           <header>
-            <h2>Sepetim</h2>
-            <h4>bomboş</h4>
+            <h2>SEPETİM</h2>
+            <h4>Sepetiniz Boş!</h4>
           </header>
         </section>
       ) : (
         <section className="cart">
           <header>
-            <h2>Sepetim</h2>
+            <h2>SEPETİM</h2>
           </header>
           <div>
             {cartItems.map((item) => {
