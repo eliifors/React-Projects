@@ -60,7 +60,7 @@ function CourseForm() {
             />
           </div>
           <div className="field">
-            <button class="button is-danger is-dark">Kaydet</button>
+            <button className="button is-danger is-dark">Kaydet</button>
           </div>
         </div>
       </form>

@@ -49,28 +49,3 @@
   display: block;
   margin: 40px 20px;
 }
-
-.listHeader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.listHeader h3.title {
-  margin-bottom: 0px;
-}
-
-.listHeader .search {
-  display: flex;
-  align-items: center;
-}
-.listHeader .search .label {
-  margin-bottom: 0px;
-  margin-right: 10px;
-}
-
-.coursePrice {
-  text-align: right;
-  font-size: 2rem;
-}
