@@ -8,5 +8,28 @@
       "id": "2",
       "name": "Kerem Tuç"
     }
-  ]
+  ],
+  "albums": [
+    {
+      "id": "3951",
+      "userId": "1",
+      "title": "Ergonomic Cotton Chicken"
+    },
+    {
+      "id": "3da3",
+      "userId": "1",
+      "title": "Rustic Aluminum Pizza"
+    },
+    {
+      "id": "949e",
+      "userId": "2",
+      "title": "Gorgeous Metal Hat"
+    },
+    {
+      "id": "aac3",
+      "userId": "1",
+      "title": "Rustic Silk Shirt"
+    }
+  ],
+  "photos": []
 }

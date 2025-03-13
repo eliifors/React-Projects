@@ -1,18 +1,15 @@
 import React from "react";
-import {
-  useFetchAlbumsQuery,
-  useAddAlbumMutation,
-} from "../store/apis/albumsApi";
+import { useFetchPhotosQuery, useAddPhotoMutation } from "../store";
+import PhotoListItem from "./PhotoListItem";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Skeleton from "@mui/material/Skeleton";
-import AlbumListItem from "./AlbumListItem";
 
-function AlbumList({ user }) {
-  const { data, isError, isFetching } = useFetchAlbumsQuery(user);
-  const [addAlbum, results] = useAddAlbumMutation();
-  const handleAlbumAdd = () => {
-    addAlbum(user);
+function PhotoList({ album }) {
+  const { data, isError, isFetching } = useFetchPhotosQuery(album);
+  const [addPhoto, results] = useAddPhotoMutation();
+  const handlePhotoAdd = () => {
+    addPhoto(album);
   };
 
   let content;
@@ -23,31 +20,30 @@ function AlbumList({ user }) {
   } else if (isError) {
     content = <div>Hata Var!</div>;
   } else {
-    content = data.map((album) => {
-      return <AlbumListItem key={album.id} album={album} />;
+    content = data.map((photo) => {
+      return <PhotoListItem key={photo.id} photo={photo} />;
     });
   }
-
   return (
     <>
       <div>
         <div className="topArrangement">
-          <h2>{user.name} Albümü</h2>
-          <Button variant="outlined" color="error" onClick={handleAlbumAdd}>
+          <h2>{album.title} Fotoğrafları</h2>
+          <Button variant="outlined" color="error" onClick={handlePhotoAdd}>
             {results.isLoading ? (
               <CircularProgress
                 color="error"
                 style={{ width: "30px", height: "30px" }}
               />
             ) : (
-              <span>Albüm Ekle +</span>
+              <span>Fotoğraf Ekle +</span>
             )}
           </Button>
         </div>
       </div>
-      <div>{content}</div>
+      <div className="photoDiv">{content}</div>
     </>
   );
 }
 
-export default AlbumList;
+export default PhotoList;

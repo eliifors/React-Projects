@@ -30,10 +30,13 @@ function UsersList() {
   return (
     <div>
       <div className="topArrangement">
-        <h1 style={{ fontSize: "25px" }}>KİŞİLER</h1>
+        <h1>KİŞİLER</h1>
         <Button variant="outlined" color="error" onClick={handleUserAdd}>
           {results.isLoading ? (
-            <CircularProgress color="error" />
+            <CircularProgress
+              color="error"
+              style={{ width: "30px", height: "30px" }}
+            />
           ) : (
             <span>Kişi Ekle +</span>
           )}
