@@ -4,3 +4,7 @@
   align-items: center;
   margin: 20px;
 }
+.panelDiv {
+  background-color: rgba(255, 0, 0, 0.381);
+  border-radius: 30px;
+}
